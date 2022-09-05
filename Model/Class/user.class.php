@@ -16,15 +16,23 @@
             $pdo->exec($req) or print_r($pdo->errorInfo());
         }
         public function RechUser($email,$password){
-            require_once('..\Model\Config\config.php');
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
             $req="SELECT * FROM User where Email='$email'and Password='$password'";
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res;
         }
+        public function RechUserEmail($email){
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
+            $cnx=new connexion();
+            $pdo=$cnx->CNX();
+            $req="SELECT * FROM User where Email='$email'";
+            $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
+            return $res;
+        }
         public function RechUser2($id){
-            require_once('..\Model\Config\config.php');
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
             $req="SELECT * FROM User where id='$id'";
@@ -32,7 +40,7 @@
             return $res;
         }
         public function SuppUser($id){
-            require_once('..\Model\Config\config.php');
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
             $req="DELETE FROM User where id='$id'";
@@ -40,7 +48,7 @@
 
         }
         function modifUser($e){
-            require_once('..\Model\Config\config.php');
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
             $req="UPDATE User set First_Name='$e->First_Name',Last_Name='$e->Last_Name',Email='$e->Email',Password='$e->Password',Centre='$e->Centre'  WHERE id='$e->id' ";
@@ -48,7 +56,7 @@
         }
         function listUser()
         {
-            require_once('..\Model\Config\config.php');
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();      
             $req="SELECT * FROM User";
@@ -56,7 +64,7 @@
             return $res; 
         }
         public function loginUser($email,$password){
-            require_once('..\Model\Config\config.php');
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
             $req="SELECT count(*) FROM User where Password='$password' and Email='$email'";
@@ -64,4 +72,3 @@
             return $res;
         }
     }
-?>

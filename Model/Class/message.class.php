@@ -15,7 +15,7 @@ class Message{
         $PDO->exec($req) or print_r($PDO->errorInfo());
     }
     public function RechMes($email){
-        require_once('..\Model\Config\config.php');
+        require_once('C:\wamp64\www\formera\Model\Config\config.php');
         $cnx=new connexion();
         $pdo=$cnx->CNX();
         $req="SELECT * FROM message where emailSender='$email'";

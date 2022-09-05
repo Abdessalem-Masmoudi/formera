@@ -14,7 +14,7 @@
                 $pdo->exec($req) or print_r($pdo->errorInfo());
             }
             public function RechAdmin($email){
-                require_once('..\Model\Config\config.php');
+                require_once('C:\wamp64\www\formera\Model\Config\config.php');
                 $cnx=new connexion();
                 $pdo=$cnx->CNX();
                 $req="SELECT count(*) FROM Admin where Email='$email'";
@@ -22,7 +22,7 @@
                 return $res;
             }
             public function SuppAdmin($login,$motdepasse){
-                require_once('..\Model\Config\config.php');
+                require_once('C:\wamp64\www\formera\Model\Config\config.php');
                 $cnx=new connexion();
                 $pdo=$cnx->CNX();
                 $req="DELETE FROM Admin where login='$login'and motdepasse='$motdepasse'";
@@ -30,7 +30,7 @@
                 return $res;
             }
             function modifAdmin($e){
-                require_once('..\Model\Config\config.php');
+                require_once('C:\wamp64\www\formera\Model\Config\config.php');
                 $cnx=new connexion();
                 $pdo=$cnx->CNX();
                 $req="UPDATE Admin set type='$e->type' WHERE login='$e->login'and motdepasse='$e->motdepasse' ";
@@ -38,7 +38,7 @@
             }
             function listAdmin()
             {
-                require_once('..\Model\Config\config.php');
+                require_once('C:\wamp64\www\formera\Model\Config\config.php');
                 $cnx=new connexion();
                 $pdo=$cnx->CNX();      
                 $req="SELECT * FROM Admin";
@@ -46,7 +46,7 @@
                 return $res; 
             }
             public function loginAdmin($email,$password){
-                require_once('..\Model\Config\config.php');
+                require_once('C:\wamp64\www\formera\Model\Config\config.php');
                 $cnx=new connexion();
                 $pdo=$cnx->CNX();
                 $req="SELECT count(*) FROM Admin where Password='$password' and Email='$email'";

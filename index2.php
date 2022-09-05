@@ -187,7 +187,7 @@ if (isset($_SESSION["password"]) && isset($_SESSION["email"])|| (isset($_SESSION
 				
 				<!-- Slider Item -->
 				<div class="owl-item home_slider_item">
-					<div class="home_slider_background" style="background-image:url(Views/user/images/homeslider.jpg)"></div>
+					<div class="home_slider_background"></div>
 					<div class="home_slider_content_container">
 						<div class="container">
 							<div class="row">
@@ -205,7 +205,7 @@ if (isset($_SESSION["password"]) && isset($_SESSION["email"])|| (isset($_SESSION
 
 				<!-- Slider Item -->
 				<div class="owl-item home_slider_item">
-					<div class="home_slider_background" style="background-image:url(Views/user/images/homeslider.jpg)"></div>
+					<div class="home_slider_background"></div>
 					<div class="home_slider_content_container">
 						<div class="container">
 							<div class="row">
@@ -223,7 +223,7 @@ if (isset($_SESSION["password"]) && isset($_SESSION["email"])|| (isset($_SESSION
 
 				<!-- Slider Item -->
 				<div class="owl-item home_slider_item">
-					<div class="home_slider_background" style="background-image:url(Views/user/images/homeslider.jpg)"></div>
+					<div class="home_slider_background"></div>
 					<div class="home_slider_content_container">
 						<div class="container">
 							<div class="row">

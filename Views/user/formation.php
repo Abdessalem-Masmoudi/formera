@@ -200,8 +200,8 @@ include_once "../../Model\Class\user.class.php";
 							<div class="products_title">Related Products</div>
 						</div>
 					</div>
-					<?php if (isset($_SESSION["password"]) && isset($_SESSION["email"])) {
-				echo "<button src='AddFormation.php'>Add Formation</button>";
+					<?php if (isset($_SESSION["password"]) && isset($_SESSION["email"])||(isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))) {
+				echo "<button><a href ='AddFormation.php'>Ajouter Formation</a></button>";
 			} ?>
 					<div class="row">
 						<div class="col">
@@ -210,16 +210,17 @@ include_once "../../Model\Class\user.class.php";
 
 								<!-- Product -->
 								<?php
-								/*$p=new For();
-                        $res=$p->listproduit();
+
+								$p=new Formation();
+                        $res=$p->listFormation();
                         foreach($res as $row){
-						echo "<div class='product'>
-                        <div class='product_image'><img src='$row[4]' alt=''></div>
-							<div class='product_content'>
-								<div class='product_title'><a href='product.php?id=$row[0]'>$row[1]</a></div>
-								<div class='product_price'>$row[2]</div>
+						echo '<div class="product">
+                        <div class="product_image"><img src="images\formation\\'.$row[5].'" alt="" ></div>
+							<div class="product_content">
+								<div class="product_title"><a href="formationDetails.php?id='.$row[0].'">'.$row[1].'</a></div>
+								<div class="product_price">'.$row[2].'$</div>
 							</div>
-                        </div>";}*/
+                        </div>';}
 								?>
 							</div>
 						</div>
