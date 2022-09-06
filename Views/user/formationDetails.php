@@ -198,6 +198,10 @@ include_once "../../Model\Class\\favourit.class.php";
 					$p = new Formation();
 					$res = $p->RechFormation($_GET['id']);
 					$row = $res->fetch();
+
+					$resRate =$part-> getPartnUserForm($_SESSION["idUser"],$row[0]);
+					$rowRate = $resRate->fetch();
+
 					echo  "
 					
 				<div class='col-lg-6'>
@@ -220,8 +224,12 @@ include_once "../../Model\Class\\favourit.class.php";
                         
 							<p>$row[4]</p>
 						</div>
+						<div class='details_text'>
+                        
+							<p> Your rate : $rowRate[3]</p>
+						</div>
 
-																	<br/>";
+					<br/>";
 					?>
 					<?php
 					if ((isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))) {
@@ -230,7 +238,22 @@ include_once "../../Model\Class\\favourit.class.php";
 							<button class='btn btn-lg'><a href= '../../Controllers/participation.php?idFormation=" . $row[0] . "'  >Participer</a></button>";
 						} else {
 							echo "
-							<button class='btn btn-lg'><a href= '../../Controllers/AnnulerParticipation.php?idFormation=" . $row[0] . "'  >Annuler</a></button>";
+							<button class='btn btn-lg'><a href= '../../Controllers/AnnulerParticipation.php?idFormation=" . $row[0] . "'  >Annuler</a></button>
+							
+							
+							<form method='POST' action='../../Controllers/addrate.php?id=$row[0]'>
+							
+						<div class='form-outline'>
+						<label class='form-label' for='rate'>add rate</label>
+                                <input type='number' min='1' max='5' name='rate'  class='form-control' style = 'width: 20%;' />
+								<input type='submit' name='submit' value='submit' class='login_sub' />
+                            </div>
+                                
+							</form>
+
+							
+							
+							";
 						}
 						if (!$fav->verifFavouritUserForm($_SESSION["idUser"], $row[0])->fetch()["count(*)"] != 0) {
 							echo "<button class='btn btn-lg'><a href= '../../Controllers/favourit.php?idFormation=" . $row[0] . "'  >❤️Favouris</a></button>";
