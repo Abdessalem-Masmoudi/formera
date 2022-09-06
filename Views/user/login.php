@@ -11,7 +11,7 @@ include_once "../../Model\Class\user.class.php";
 <title>Login</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Sublime project">
+<meta name="description" content="Formera project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -38,7 +38,7 @@ include_once "../../Model\Class\user.class.php";
                                 <ul>
                                         <li><a href="../../index.php">Home</a></li>
                                         
-                                        <li><a href="formation.php">Formation</a></li>
+                                        <li><a href="../../Controllers/search.php">Formation</a></li>
                                     <li><a href="contact.php">Contact</a></li>
                                     <?php
 if ((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (isset($_SESSION["password"]) && isset($_SESSION["email"]))|| (isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))) {
@@ -57,8 +57,9 @@ if (isset($_SESSION["password"]) && isset($_SESSION["email"])|| (isset($_SESSION
                                </ul>
                             </nav>
                             <div class="header_extra ml-auto">
+                            <?php if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (isset($_SESSION["password"]) && isset($_SESSION["email"]))|| (isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))){ ?>
                                 <div class="shopping_cart">
-                                    <a href="cart.php">
+                                    <?php echo '<a href="cart.php?id='.$_SESSION["idUser"].'">'?>
                                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                  viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve">
                                             <g>
@@ -69,12 +70,14 @@ if (isset($_SESSION["password"]) && isset($_SESSION["email"])|| (isset($_SESSION
                                                     c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h45.2l26.9,302.3C412.8,445.2,392.1,462,366.8,462z"/>
                                             </g>
                                         </svg>
-                                        <div>Cart <span>(<?php if(isset($_SESSION['nb'])) {
+										<div>Cart <span>(<?php if(isset($_SESSION['nb'])) {
 											$p=new Formation();
 											$x=0;
 											$c=$_SESSION["cart"];
 											foreach($c as $row){$x+=$row[1];}echo $x;}else{echo 0;}?>)</span></div>                                    </a>
+										
                                 </div>
+								<?php }?>
                                 <div class="search">
                                     <div class="search_icon">
                                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -180,8 +183,8 @@ if (isset($_SESSION["password"]) && isset($_SESSION["email"])|| (isset($_SESSION
 	
 	<!-- Home -->
 	<div class="home">
-		<div class="champAyman" >
-			<div class="formAyman">
+		<div class="champFormera" >
+			<div class="formFormera">
 					<div class="formtitle">
 						Login
 					</div>

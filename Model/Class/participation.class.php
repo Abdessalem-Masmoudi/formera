@@ -20,6 +20,14 @@
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res;
         }
+        public function RechParticipationUser($id){
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
+            $cnx=new connexion();
+            $pdo=$cnx->CNX();
+            $req="SELECT * FROM Participation where idUser='$id'";
+            $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
+            return $res;
+        }
         public function SuppParticipation($id){
             require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();

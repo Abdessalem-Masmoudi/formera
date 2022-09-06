@@ -10,7 +10,7 @@ session_start();
 <title>Formera</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Sublime project">
+<meta name="description" content="Formera project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="Views/user/styles/bootstrap4/bootstrap.min.css">
 <link href="Views/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -55,8 +55,9 @@ if (isset($_SESSION["password"]) && isset($_SESSION["email"])|| (isset($_SESSION
                                </ul>
                             </nav>
                             <div class="header_extra ml-auto">
+								<?php if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (isset($_SESSION["password"]) && isset($_SESSION["email"]))|| (isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))){ ?>
                                 <div class="shopping_cart">
-                                    <a href="Views/user/cart.php">
+                                    <?php echo '<a href="Views/user/cart.php?id='.$_SESSION["idUser"].'">'?>
                                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                  viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve">
                                             <g>
@@ -72,7 +73,9 @@ if (isset($_SESSION["password"]) && isset($_SESSION["email"])|| (isset($_SESSION
 											$x=0;
 											$c=$_SESSION["cart"];
 											foreach($c as $row){$x+=$row[1];}echo $x;}else{echo 0;}?>)</span></div>                                    </a>
+										
                                 </div>
+								<?php }?>
                                 <div class="search">
                                     <div class="search_icon">
                                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

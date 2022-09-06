@@ -18,16 +18,19 @@ include_once "..\Model\Class\user.class.php";
             $_SESSION["password"]=$pass;
             header("location:../index.php");
         
-    }elseif($u->loginUser($mail,$pass)->fetchColumn(0)!=0){
+    }else{
+        if($u->loginUser($mail,$pass)->fetchColumn(0)!=0){
+            $user=$u->RechUserEmail($mail)->fetch();
         session_start();
         $_SESSION["emailUser"]=$mail;
+        $_SESSION["idUser"]=$user[0];
         $_SESSION["passwordUser"]=$pass;
         header("location:../index.php");
+        
     
 }else{
         echo ("<script LANGUAGE='JavaScript'>
     window.alert('Verifier vos Donnees !!!');
     window.location.href='../Views/user/Login.php';
     </script>");
-    }
-?>
+    }}
