@@ -41,7 +41,7 @@ include_once "../../Model\Class\user.class.php";
 										<li><a href="contact.php">Contact</a></li>
                                     <?php
 if ((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (isset($_SESSION["password"]) && isset($_SESSION["email"]))) {
-    echo "<li><a href='..\Controler\Logout.php'>Logout</a></li>";
+    echo "<li><a href='..\../Controllers\Logout.php'>Logout</a></li>";
 } else {
     echo "
                                     <li><a href='Login.php'>Login</a></li>

@@ -22,7 +22,9 @@ include_once "../../Model\Class\user.class.php";
 </head>
 
 <body>
-
+<?php if (isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"])) {
+											
+										?>
 	<div class="super_container">
 
 		<!-- Header -->
@@ -204,9 +206,7 @@ include_once "../../Model\Class\user.class.php";
 							<div class="products_title">Related Products</div>
 						</div>
 					</div>
-					<?php if (isset($_SESSION["password"]) && isset($_SESSION["email"])||(isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))) {
-				echo "<button><a href ='AddFormation.php'>Ajouter Formation</a></button>";
-			} ?>
+
 					<div class="row">
 						<div class="col">
 
@@ -286,6 +286,9 @@ include_once "../../Model\Class\user.class.php";
 	<script src="plugins/easing/easing.js"></script>
 	<script src="plugins/parallax-js-master/parallax.min.js"></script>
 	<script src="js/product.js"></script>
+<?php } else{
+    header("location:../../index.php");
+    }?>
 </body>
 
 </html>

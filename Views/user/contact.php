@@ -48,7 +48,7 @@ include_once "../../Model\Class\user.class.php";
                                     <li><a href='Inscription.php'>Inscription</a></li>";
 										}
 										if (isset($_SESSION["password"]) && isset($_SESSION["email"]) || (isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))) {
-											echo "<li><a href='views/Profile.php'>Profile</a></li>";
+											echo "<li><a href='Profile.php'>Profile</a></li>";
 										} elseif (isset($_SESSION["passwordAdmin"]) && isset($_SESSION["emailAdmin"])) {
 											echo "<li><a href='../admin/pages/dashboard.php'>Admin</a></li>";
 										}

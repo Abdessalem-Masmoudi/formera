@@ -47,7 +47,7 @@ if ((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (is
                                     <li><a href='Views/user/Inscription.php'>Inscription</a></li>";
 }
 if (isset($_SESSION["password"]) && isset($_SESSION["email"])|| (isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))) {
-    echo "<li><a href='user/Profile.php'>Profile</a></li>";
+    echo "<li><a href='views/user/Profile.php'>Profile</a></li>";
 } elseif (isset($_SESSION["passwordAdmin"]) && isset($_SESSION["emailAdmin"])) {
     echo "<li><a href='views/admin/pages/dashboard.php'>Admin</a></li>";
 }
