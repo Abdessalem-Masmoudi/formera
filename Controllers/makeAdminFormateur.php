@@ -15,5 +15,5 @@
     $a->Email=$row[3];
     $a->Password=$row[4];
     $a->insertion($a);
-   header("location:../Views/admin/pages/tableFormateur.php");
+   header("location:searchFormateur.php");
 ?>

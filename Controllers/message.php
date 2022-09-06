@@ -7,10 +7,10 @@ if(isset($_SESSION["password"]) && isset($_SESSION["email"])){
     $m->emailSender=$_SESSION["email"];
     $m->message=$_POST['message'];
     $m->insertion($m);
-    /*echo ("<script LANGUAGE='JavaScript'>
+    echo ("<script LANGUAGE='JavaScript'>
     window.alert('Sent successfuly!!');
-    window.location.href='../View/index.php';
-    </script>");*/
+    window.location.href='../index.php';
+    </script>");
 }else{
     echo ("<script LANGUAGE='JavaScript'>
     window.alert('Veuillez s inscrire d abord !!');

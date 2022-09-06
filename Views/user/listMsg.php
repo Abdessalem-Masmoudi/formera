@@ -12,10 +12,10 @@ include_once "../../Model\Class\user.class.php";
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Formera project">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../../styles/bootstrap4/bootstrap.min.css">
-	<link href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="../../styles/contact.css">
-	<link rel="stylesheet" type="text/css" href="../../styles/contact_responsive.css">
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+	<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="styles/contact.css">
+	<link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
 </head>
 
 <body>
@@ -47,9 +47,9 @@ include_once "../../Model\Class\user.class.php";
                                     <li><a href='views/Inscription.php'>Inscription</a></li>";
 										}
 										if (isset($_SESSION["password"]) && isset($_SESSION["email"]) || (isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))) {
-											echo "<li><a href='views/Profile.php'>Profile</a></li>";
+											echo "<li><a href='Profile.php'>Profile</a></li>";
 										} elseif (isset($_SESSION["passwordAdmin"]) && isset($_SESSION["emailAdmin"])) {
-											echo "<li><a href='views/admin/pages/dashboard.php'>Admin</a></li>";
+											echo "<li><a href='../admin/pages/dashboard.php'>Admin</a></li>";
 										}
 										?>
 									</ul>
@@ -181,7 +181,7 @@ include_once "../../Model\Class\user.class.php";
 		<!-- Contact -->
 		<?php
 		if ((isset($_SESSION["password"]) && isset($_SESSION["email"]))) {
-			require_once "..\Model\Class\message.class.php";
+			require_once "..\../Model\Class\message.class.php";
 			$m = new message();
 			$res = $m->RechMes($_SESSION["email"]);
 			foreach ($res as $row) {

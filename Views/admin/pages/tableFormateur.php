@@ -65,7 +65,7 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white  " href="../pages/tableUsers.php">
+                    <a class="nav-link text-white " href="../../../Controllers/searchUser.php">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">group</i>
                         </div>
@@ -73,7 +73,7 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary " href="../pages/tableFormateur.php">
+                    <a class="nav-link text-white " href="../../../Controllers/searchFormateur.php">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">local_library</i>
                         </div>
@@ -81,7 +81,7 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/tableFormation.php">
+                    <a class="nav-link text-white " href="../../../Controllers/searchFormation.php">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">insert_drive_file</i>
                         </div>
@@ -89,16 +89,9 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
                     </a>
                 </li>
 
+
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/profile.php">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">person</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Profile</span>
-                    </a>
                 </li>
 
                 <li class="nav-item">
@@ -129,11 +122,10 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
                                             <div class="col">
                                                 <div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
                                                 <h6>Search          :&nbsp&nbsp</h6>
-                                                    <form action="../../Controllers/search.php" method="post">
-                                                        <input type="text" class="search_input" name="Desigation" placeholder="Desigation" style="width: 250px;">
-                                                        <input type="text" class="search_input" name="PrixMax" placeholder="PrixMax" style="width: 250px;">
-                                                        <input type="text" class="search_input" name="PrixMin" placeholder="PrixMin" style="width: 250px;">
-                                                        <input type="text" class="search_input" name="Caracteristique" placeholder="Caracteristique" style="width: 250px;">
+                                                    <form action="../../../Controllers/searchFormateur.php" method="post">
+                                                        <input type="text" class="search_input" name="First_Name" placeholder="First Name" style="width: 250px;">
+                                                        <input type="text" class="search_input" name="Last_Name" placeholder="Last Name" style="width: 250px;">
+                                                        <input type="text" class="search_input" name="Email" placeholder="Email" style="width: 250px;">
                                                         <button type="submit" style="height: 40px; width: 25px;border:0px"><i class="fa fa-search"></i></button>
                                                     </form>
                                                 </div>
@@ -162,37 +154,7 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
                                     </thead>
                                     <tbody>
                                     <?php 
-                                    foreach ($list as $row ){
-                                    echo
-                                    '
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">'.$row[1].' '.$row[2] .'</h6>
-                                                        <p class="text-xs text-secondary mb-0">'.$row[3].'</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">User</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-success">'.$row[5].'</span>
-                                            </td>';
-                                            if ($a->RechAdmin($row[3])->fetchColumn(0) == 0) {
-                                                echo '<td class="align-middle text-center text-sm"><a href ="../../../Controllers/makeAdminFormateur.php?email='.$row[3].'">Make Admin</a></td>';
-                                            }else{
-                                                echo '<td class="align-middle text-center text-sm">Admin</td>';
-                                            }
-                                            echo '<td class="align-middle text-center text-sm">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    ';}
+                                    echo $_SESSION["res"];
                                     ?></tbody>
                                 </table>
                             </div>

@@ -201,7 +201,7 @@ if (!((isset($_SESSION["email"]) && isset($_SESSION["password"])))) {
                             </tr>
                             <tr>
                                 <td>Price</td>
-                                <td><input type="text" name="Prix" class="login" /></td>
+                                <td><input type="number" name="Prix" class="login" /></td>
                             </tr>
                             <tr>
                                 <td>Modality</td>

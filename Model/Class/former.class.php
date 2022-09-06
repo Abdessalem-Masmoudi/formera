@@ -48,6 +48,15 @@
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res;
         }
+        public function getFormerForm($id){
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
+            $cnx=new connexion();
+            $pdo=$cnx->CNX();
+            $req="SELECT * FROM Former where idFormateur=$id" ;
+            
+            $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
+            return $res;
+        }
         public function SuppFormer($id){
             require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
@@ -77,6 +86,14 @@
             $cnx=new connexion();
             $pdo=$cnx->CNX();
             $req="DELETE FROM Former where idFormation='$id'";
+            $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
+            return $res;
+        }
+        public function SuppFormerFormateur($id){
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
+            $cnx=new connexion();
+            $pdo=$cnx->CNX();
+            $req="DELETE FROM Former where idFormateur='$id'";
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res;
         }

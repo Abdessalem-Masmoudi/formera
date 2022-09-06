@@ -183,19 +183,19 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (iss
                         <form method="POST" action="../../Controllers/formateur.php">
                             <tr>
                                 <td>Name</td>
-                                <td><input type="text" name="First_Name" class="login" /></td>
+                                <td><input type="text" name="First_Name" class="login"required="required" /></td>
                             </tr>
                             <tr>
                                 <td>Family name</td>
-                                <td><input type="text" name="Last_Name" class="login" /></td>
+                                <td><input type="text" name="Last_Name" class="login"required="required" /></td>
                             </tr>
                             <tr>
                                 <td>Email</td>
-                                <td><input type="email" name="Email" class="login" /></td>
+                                <td><input type="email" name="Email" class="login"  pattern=".+@+.+" required="required" /></td>
                             </tr>
                             <tr>
                                 <td>Interest</td>
-                                <td><select name="Centre[]" class="login" multiple>
+                                <td><select name="Centre[]" class="login" required="required" multiple>
                                         <option>Html</option>
                                         <option>css</option>
                                         <option>php</option>
@@ -210,7 +210,7 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (iss
                             </tr> -->
                             <tr>
                                 <td>Account type</td>
-                                <td><input type="radio" id="Formateur" name="Type" value="Formateur">
+                                <td><input type="radio" id="Formateur" name="Type" value="Formateur" required="required">
                                     <label for="Formateur">Former</label><br>
                                     <input type="radio" id="User" name="Type" value="User">
                                     <label for="User">User</label><br>
@@ -218,11 +218,11 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (iss
                             </tr>
                             <tr>
                                 <td>Password</td>
-                                <td><input type="password" name="Password" class="login" /></td>
+                                <td><input type="password" name="Password" class="login" required="required"/></td>
                             </tr>
                             <tr>
                                 <td>Confirm Password</td>
-                                <td><input type="password" name="rePassword" class="login" /></td>
+                                <td><input type="password" name="rePassword" class="login"required="required" /></td>
                             </tr>
                             <tr>
                                 <td colspan="2"><input type="submit" name="submit" value="submit" class="login_sub" /></td>

@@ -69,7 +69,7 @@ if ((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))) {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../pages/tableUsers.php">
+                    <a class="nav-link text-white " href="../../../Controllers/searchUser.php">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">group</i>
                         </div>
@@ -77,7 +77,7 @@ if ((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))) {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/tableFormateur.php">
+                    <a class="nav-link text-white " href="../../../Controllers/searchFormateur.php">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">local_library</i>
                         </div>
@@ -85,7 +85,7 @@ if ((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))) {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="../pages/tableFormation.php">
+                    <a class="nav-link text-white " href="../../../Controllers/searchFormation.php">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">insert_drive_file</i>
                         </div>
@@ -95,14 +95,6 @@ if ((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))) {
 
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="../pages/profile.php">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">person</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Profile</span>
-                    </a>
                 </li>
 
                 <li class="nav-item">
@@ -132,7 +124,7 @@ if ((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))) {
                                             <div class="col">
                                                 <div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
                                                 <h6>Search          :&nbsp&nbsp</h6>
-                                                    <form action="../../Controllers/search.php" method="post">
+                                                    <form action="../../../Controllers/searchFormation.php" method="post">
                                                         <input type="text" class="search_input" name="Desigation" placeholder="Desigation" style="width: 250px;">
                                                         <input type="text" class="search_input" name="PrixMax" placeholder="PrixMax" style="width: 250px;">
                                                         <input type="text" class="search_input" name="PrixMin" placeholder="PrixMin" style="width: 250px;">
@@ -157,55 +149,12 @@ if ((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))) {
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Prix</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Caracteristique</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">edit</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        foreach ($list as $row) {
-                                            echo
-                                            '
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">' . $row[1] . '</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex px-2 py-1" >
-                                                    
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">' . $row[2] . '</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex px-2 py-1 justify-content-center">
-                                                    
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">' . $row[3] . '</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex px-2 py-1 justify-content-center">
-                                                    
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">' . $row[4] . '</h6>
-                                                    </div>
-                                                </div>
-                                            </td>';
-                                            echo '<td class="align-middle text-center text-sm">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    ';
-                                        }
+                                        echo $_SESSION["res"];
                                         ?>
                                     </tbody>
                                 </table>

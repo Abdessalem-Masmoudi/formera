@@ -198,7 +198,7 @@ include_once "../../Model\Class\user.class.php";
 							<h1 class='products_title'>Formation</h1>
 						</div>
 					</div>
-					<?php if (isset($_SESSION["password"]) && isset($_SESSION["email"]) || (isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))) {
+					<?php if (isset($_SESSION["password"]) && isset($_SESSION["email"]) ) {
 						echo "<button class='btn btn-lg'><a href ='AddFormation.php' >Add formation</a></button>";
 					} ?>
 					<div class="row">
