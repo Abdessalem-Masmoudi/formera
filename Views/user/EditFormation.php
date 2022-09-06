@@ -1,13 +1,17 @@
-<?php session_start();
+<?php
 include_once "../../Model/Class/formateur.class.php";
 include_once "../../Model/Class/Admin.class.php";
 include_once "../../Model/Class/Formation.class.php";
 include_once "../../Model\Class\user.class.php";
+session_start();
+if (!((isset($_SESSION["email"]) && isset($_SESSION["password"])))) {
+    header("location:Login.php");
+}
 ?>
 <html lang="en">
 
 <head>
-    <title>Registration</title>
+    <title>Shop</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Formera project">
@@ -22,9 +26,8 @@ include_once "../../Model\Class\user.class.php";
 </head>
 
 <body>
-    <?php
-if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (isset($_SESSION["email"]) && isset($_SESSION["password"]))|| (isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))){header("location:../index.php");}
-    ?><div class="super_container">
+
+    <div class="super_container">
 
         <!-- Header -->
 
@@ -39,36 +42,43 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (iss
                                     <ul>
                                         <li><a href="../../index.php">Home</a></li>
                                         <li><a href="../../Controllers/search.php">Formation</a></li>
+
                                         <li><a href="contact.php">Contact</a></li>
                                         <?php
-                                        if ((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (isset($_SESSION["password"]) && isset($_SESSION["email"])) || (isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))) {
+                                        if ((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (isset($_SESSION["password"]) && isset($_SESSION["email"]))) {
                                             echo "<li><a href='../../Controllers\Logout.php'>Logout</a></li>";
                                         } else {
                                             echo "
                                     <li><a href='Login.php'>Login</a></li>
                                     <li><a href='Inscription.php'>Registration</a></li>";
                                         }
-                                        if (isset($_SESSION["password"]) && isset($_SESSION["email"]) || (isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))) {
+                                        if (isset($_SESSION["password"]) && isset($_SESSION["email"])) {
                                             echo "<li><a href='Profile.php'>Profile</a></li>";
                                         } elseif (isset($_SESSION["passwordAdmin"]) && isset($_SESSION["emailAdmin"])) {
-                                            echo "<li><a href='views/admin/pages/dashboard.php.php'>Admin</a></li>";
+                                            echo "<li><a href='../admin/pages/dashboard.php'>Admin</a></li>";
                                         }
                                         ?>
                                     </ul>
                                 </nav>
                                 <div class="header_extra ml-auto">
-                                <?php if((isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))){ ?>
-                                <div class="shopping_cart">
-                                    <?php echo '<a href="cart.php?id='.$_SESSION["idUser"].'">'?>
-                                      
-										<div>❤️ Favoris <span>(<?php if(isset($_SESSION['nb'])) {
-											$p=new Formation();
-											$x=0;
-											$c=$_SESSION["cart"];
-											foreach($c as $row){$x+=$row[1];}echo $x;}else{echo 0;}?>)</span></div>                                    </a>
-										
-                                </div>
-								<?php }?>
+                                <?php if ((isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))) { ?> 
+										<div class="shopping_cart">
+											<?php echo '<a href="cart.php?id=' . $_SESSION["idUser"] . '">' ?>
+
+											<div>❤️ Favoris <span>(<?php if (isset($_SESSION['nb'])) {
+																		$p = new Formation();
+																		$x = 0;
+																		$c = $_SESSION["cart"];
+																		foreach ($c as $row) {
+																			$x += $row[1];
+																		}
+																		echo $x;
+																	} else {
+																		echo 0;
+																	} ?>)</span></div> </a>
+
+										</div>
+									<?php } ?>
                                     <div class="search">
                                         <div class="search_icon">
                                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 475.084 475.084" style="enable-background:new 0 0 475.084 475.084;" xml:space="preserve">
@@ -140,6 +150,7 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (iss
                                 <li class="page_menu_item menu_mm"><a href="categories.php">Categories<i class="fa fa-angle-down"></i></a></li>
                                 <li class="page_menu_item menu_mm"><a href="prod.php">Product<i class="fa fa-angle-down"></i></a></li>
                                 <li class="page_menu_item menu_mm"><a href="cart.php">Cart<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="checkout.php">Checkout<i class="fa fa-angle-down"></i></a></li>
                                 <li class="page_menu_item menu_mm"><a href="contact.php">Contact<i class="fa fa-angle-down"></i></a></li>
                             </ul>
                         </li>
@@ -172,58 +183,56 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (iss
         </div>
 
         <!-- Home -->
-
+<?php 
+    $f=new Formation();
+    $row=$f->RechFormation($_GET["idFormation"])->fetch();
+    print_r($row);
+?>
         <div class="home">
             <div class="champFormera">
                 <div class="formFormera">
+
                     <div class="formtitle">
-                    Registration
+                        Edit Formation :
                     </div>
+                    <br>
+                    <br>
                     <table>
-                        <form method="POST" action="../../Controllers/formateur.php">
+                        <form method="POST" action="../../Controllers\editFormation.php?idFormation=<?php echo $row[0]?>" enctype="multipart/form-data">
                             <tr>
-                                <td>Name</td>
-                                <td><input type="text" name="First_Name" class="login" /></td>
+                                <td>Title</td>
+                                <td><input type="text" name="Desigation" class="login" value="<?php echo $row[1]?>"/></td>
                             </tr>
                             <tr>
-                                <td>Family name</td>
-                                <td><input type="text" name="Last_Name" class="login" /></td>
+                                <td>Price</td>
+                                <td><input type="number" name="Prix" class="login" value="<?php echo $row[2]?>"/></td>
                             </tr>
                             <tr>
-                                <td>Email</td>
-                                <td><input type="email" name="Email" class="login" /></td>
-                            </tr>
-                            <tr>
-                                <td>Interest</td>
-                                <td><select name="Centre[]" class="login" multiple>
-                                        <option>Html</option>
-                                        <option>css</option>
-                                        <option>php</option>
-                                    </select></td>
-                            </tr>
-                            <!-- <tr>
-                                <td>Type de formation</td>
-                                <td><select name="Centre[]" class="login" multiple>
-                                        <option>Presentiel</option>
-                                        <option>En ligne</option>
-                                    </select></td>
-                            </tr> -->
-                            <tr>
-                                <td>Account type</td>
-                                <td><input type="radio" id="Formateur" name="Type" value="Formateur">
-                                    <label for="Formateur">Former</label><br>
-                                    <input type="radio" id="User" name="Type" value="User">
-                                    <label for="User">User</label><br>
+                                <td>Modality</td>
+                                <td>
+                                    <select name="Caracteristique" class="login">
+                                        <option disabled="disabled">--Please choose an option--</option>
+                                        <?php if ($row[3]=='Online'){?>
+                                        <option value="enligne" selected="true" >Online</option>
+                                        <option value="presentielle">Face-to-face</option>
+                                        <?php }else{ ?>
+                                            <option value="enligne" >Online</option>
+                                        <option value="presentielle"selected="true" >Face-to-face</option>
+                                        <?php } ?> 
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Password</td>
-                                <td><input type="password" name="Password" class="login" /></td>
+                                <td>Description</td>
+                                <td><textarea name="description" class="login" rows="4" cols="40"><?php echo $row[4]?>
+
+</textarea></td>
                             </tr>
                             <tr>
-                                <td>Confirm Password</td>
-                                <td><input type="password" name="rePassword" class="login" /></td>
+                                <td>Image</td>
+                                <td><input type="file" name="Image" class="login" value="C:\wamp64\www\formera\Views\user\images\formation\<?php echo $row[5]?>" /></td>
                             </tr>
+
                             <tr>
                                 <td colspan="2"><input type="submit" name="submit" value="submit" class="login_sub" /></td>
                             </tr>
@@ -238,17 +247,17 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])) || (iss
 
         <div class="footer_overlay"></div>
         <footer class="footer">
-            <div class="footer_background" style="background-image:url(images/footer2.jpg)"></div>
+            <div class="footer_background" style="background-image:url(images/footer.jpg)"></div>
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <div class="footer_content d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-
+                            <div class="footer_logo"><a href="#">Body Shaping corp</a></div>
                             <div class="copyright ml-auto mr-auto">
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 Copyright &copy;<script>
                                     document.write(new Date().getFullYear());
-                                </script> All rights reserved 
+                                </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </div>
                             <div class="footer_social ml-lg-auto">

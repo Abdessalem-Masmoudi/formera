@@ -14,14 +14,15 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-<?php session_start()?>
+<?php session_start() ?>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-    Formera Admin Dashboard - Formation
+        Formera Admin Dashboard - Formation
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -38,16 +39,19 @@
 <?php
 include_once "../../../Model/Class/formation.class.php";
 include_once "../../../Model/Class/Admin.class.php";
-if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
+if ((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))) {
     $a = new Admin();
     $u = new Formation();
     $list = $u->listFormation();
-}else{header("location:../../../index.php");}?>
+} else {
+    header("location:../../../index.php");
+} ?>
+
 <body class="g-sidenav-show  bg-gray-200">
     <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href="../../../index2.php" target="_blank">
+            <a class="navbar-brand m-0" href="../../../index.php" target="_blank">
                 <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">formera</span>
             </a>
@@ -102,7 +106,7 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
                 </li>
 
                 <li class="nav-item">
-                <a class="nav-link text-white " href="../../../Controllers/logout.php">
+                    <a class="nav-link text-white " href="../../../Controllers/logout.php">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">do_not_disturb</i>
                         </div>
@@ -118,9 +122,30 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
             <div class="row">
                 <div class="col-12">
                     <div class="card my-4">
+                        <h1>&nbsp Trainnig's List </h1>
+                        <br>
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Authors table</h6>
+                                <div class="search_panel trans_300">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
+                                                <h6>Search          :&nbsp&nbsp</h6>
+                                                    <form action="../../Controllers/search.php" method="post">
+                                                        <input type="text" class="search_input" name="Desigation" placeholder="Desigation" style="width: 250px;">
+                                                        <input type="text" class="search_input" name="PrixMax" placeholder="PrixMax" style="width: 250px;">
+                                                        <input type="text" class="search_input" name="PrixMin" placeholder="PrixMin" style="width: 250px;">
+                                                        <input type="text" class="search_input" name="Caracteristique" placeholder="Caracteristique" style="width: 250px;">
+                                                        <button type="submit" style="height: 40px; width: 25px;border:0px"><i class="fa fa-search"></i></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                         <div class="card-body px-0 pb-2">
@@ -136,16 +161,16 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php 
-                                    foreach ($list as $row ){
-                                    echo
-                                    '
+                                        <?php
+                                        foreach ($list as $row) {
+                                            echo
+                                            '
                                         <tr>
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">'.$row[1].'</h6>
+                                                        <h6 class="mb-0 text-sm">' . $row[1] . '</h6>
                                                     </div>
                                                 </div>
                                             </td>
@@ -153,7 +178,7 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
                                                 <div class="d-flex px-2 py-1" >
                                                     
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">'.$row[2].'</h6>
+                                                        <h6 class="mb-0 text-sm">' . $row[2] . '</h6>
                                                     </div>
                                                 </div>
                                             </td>
@@ -161,7 +186,7 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
                                                 <div class="d-flex px-2 py-1 justify-content-center">
                                                     
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">'.$row[3].'</h6>
+                                                        <h6 class="mb-0 text-sm">' . $row[3] . '</h6>
                                                     </div>
                                                 </div>
                                             </td>
@@ -169,7 +194,7 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
                                                 <div class="d-flex px-2 py-1 justify-content-center">
                                                     
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">'.$row[4].'</h6>
+                                                        <h6 class="mb-0 text-sm">' . $row[4] . '</h6>
                                                     </div>
                                                 </div>
                                             </td>';
@@ -179,8 +204,9 @@ if((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"]))){
                                                 </a>
                                             </td>
                                         </tr>
-                                    ';}
-                                    ?>
+                                    ';
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

@@ -1,7 +1,7 @@
 <?php
-    class Favourit{
+    class Former{
         public $id;
-        public $idUser;
+        public $idFormateur;
         public $idFormation;
         public function __construct(){
         }
@@ -9,70 +9,74 @@
             require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cn=new connexion();
             $pdo=$cn->CNX();
-            $req="INSERT INTO  Favourit (idUser,idFormation) VALUES ('$c->idUser','$c->idFormation')";
+            $req="INSERT INTO  Former (idFormateur,idFormation) VALUES ($c->idFormateur,$c->idFormation)";
+            echo $req;
             $pdo->exec($req) or print_r($pdo->errorInfo());
         }
-        public function RechFavourit($id){
+        public function RechFormer($id){
             require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
-            $req="SELECT * FROM Favourit where id='$id'";
+            $req="SELECT * FROM Former where id='$id'";
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res;
         }
-        public function RechFavouritUser($id){
+        public function RechFormerUser($id){
             require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
-            $req="SELECT * FROM Favourit where idUser=$id";
+            $req="SELECT * FROM Former where idFormateur=$id";
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res;
         }
-        public function verifFavouritUserForm($id,$idFormation){
+        public function verifFormerUserForm($id,$idFormation){
             require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
-            $req="SELECT count(*) FROM Favourit where idUser=$id and idFormation=$idFormation";
+            $req="SELECT count(*) FROM Former where idFormateur=$id and idFormation = $idFormation";
+            
+            $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
+            
+            return $res;
+        }
+        public function getFormerUserForm($id,$idFormation){
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
+            $cnx=new connexion();
+            $pdo=$cnx->CNX();
+            $req="SELECT * FROM Former where idFormateur=$id and idFormation = $idFormation";
+            
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res;
         }
-        public function getFavouritUserForm($id,$idFormation){
+        public function SuppFormer($id){
             require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
-            $req="SELECT * FROM Favourit where idUser=$id and idFormation=$idFormation";
+            $req="DELETE FROM Former where id='$id'";
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res;
         }
-        public function SuppFavourit($id){
+        function modifFormer($e){
             require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
-            $req="DELETE FROM Favourit where id='$id'";
-            $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
-            return $res;
-        }
-        function modifFavourit($e){
-            require_once('C:\wamp64\www\formera\Model\Config\config.php');
-            $cnx=new connexion();
-            $pdo=$cnx->CNX();
-            $req="UPDATE Favourit set idUser='$e->idUser',idFormation='$e->idFormation' ";
+            $req="UPDATE Former set idFormateur='$e->idFormateur',idFormation='$e->idFormation' ";
             $pdo->exec($req)  or print_r($pdo->errorInfo());
         }
-        function listFavourit()
+        function listFormer()
         {
             require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();      
-            $req="SELECT * FROM Favourit";
+            $req="SELECT * FROM Former";
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res; 
         }
-        public function SuppFavouritFormation($id){
+        public function SuppFormerFormation($id){
             require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
-            $req="DELETE FROM Favourit where idFormation='$id'";
+            $req="DELETE FROM Former where idFormation='$id'";
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res;
         }

@@ -24,7 +24,26 @@
             require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
-            $req="SELECT * FROM Participation where idUser='$id'";
+            $req="SELECT * FROM Participation where idUser=$id";
+            $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
+            return $res;
+        }
+        public function verifPartnUserForm($id,$idFormation){
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
+            $cnx=new connexion();
+            $pdo=$cnx->CNX();
+            $req="SELECT count(*) FROM Participation where idUser=$id and idFormation = $idFormation";
+            
+            $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
+            
+            return $res;
+        }
+        public function getPartnUserForm($id,$idFormation){
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
+            $cnx=new connexion();
+            $pdo=$cnx->CNX();
+            $req="SELECT * FROM Participation where idUser=$id and idFormation = $idFormation";
+            
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res;
         }
@@ -51,6 +70,14 @@
             $req="SELECT * FROM Participation";
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res; 
+        }
+        public function SuppParticipationFormation($id){
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
+            $cnx=new connexion();
+            $pdo=$cnx->CNX();
+            $req="DELETE FROM Participation where idFormation='$id'";
+            $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
+            return $res;
         }
     }
 ?>

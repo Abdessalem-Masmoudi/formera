@@ -13,7 +13,7 @@ session_start();
     $row=$res->fetch();
     $p-> idUser = $row[0];
     $p-> insertion($p);
-    header("location:search.php");
+    header("location:../Views/user/formationDetails.php?id=".$p-> idFormation);
 
 
 

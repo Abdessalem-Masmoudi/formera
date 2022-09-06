@@ -4,7 +4,7 @@ include_once "../../Model/Class/Admin.class.php";
 include_once "../../Model/Class/Formation.class.php";
 include_once "../../Model\Class\user.class.php";
 session_start();
-if (!((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])))) {
+if (!((isset($_SESSION["email"]) && isset($_SESSION["password"])))) {
     header("location:Login.php");
 }
 ?>
@@ -50,7 +50,7 @@ if (!((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])))) {
                                         } else {
                                             echo "
                                     <li><a href='Login.php'>Login</a></li>
-                                    <li><a href='Inscription.php'>Inscription</a></li>";
+                                    <li><a href='Inscription.php'>Registration</a></li>";
                                         }
                                         if (isset($_SESSION["password"]) && isset($_SESSION["email"])) {
                                             echo "<li><a href='Profile.php'>Profile</a></li>";
@@ -61,7 +61,24 @@ if (!((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])))) {
                                     </ul>
                                 </nav>
                                 <div class="header_extra ml-auto">
-                            
+                                <?php if ((isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))) { ?> 
+										<div class="shopping_cart">
+											<?php echo '<a href="cart.php?id=' . $_SESSION["idUser"] . '">' ?>
+
+											<div>❤️ Favoris <span>(<?php if (isset($_SESSION['nb'])) {
+																		$p = new Formation();
+																		$x = 0;
+																		$c = $_SESSION["cart"];
+																		foreach ($c as $row) {
+																			$x += $row[1];
+																		}
+																		echo $x;
+																	} else {
+																		echo 0;
+																	} ?>)</span></div> </a>
+
+										</div>
+									<?php } ?>
                                     <div class="search">
                                         <div class="search_icon">
                                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 475.084 475.084" style="enable-background:new 0 0 475.084 475.084;" xml:space="preserve">
@@ -172,32 +189,32 @@ if (!((isset($_SESSION["emailAdmin"]) && isset($_SESSION["passwordAdmin"])))) {
                 <div class="formFormera">
 
                     <div class="formtitle">
-                        Ajouter Formation :
+                        Add Formation :
                     </div>
                     <br>
                     <br>
                     <table>
                         <form method="POST" action="../../Controllers\addFormation.php" enctype="multipart/form-data">
                             <tr>
-                                <td>Desigation</td>
+                                <td>Title</td>
                                 <td><input type="text" name="Desigation" class="login" /></td>
                             </tr>
                             <tr>
-                                <td>Prix</td>
+                                <td>Price</td>
                                 <td><input type="text" name="Prix" class="login" /></td>
                             </tr>
                             <tr>
-                                <td>Caracteristique</td>
+                                <td>Modality</td>
                                 <td>
                                     <select name="Caracteristique" class="login">
                                         <option selected="true" disabled="disabled">--Please choose an option--</option>
-                                        <option value="enligne">enligne</option>
-                                        <option value="presentielle">presentielle</option>
+                                        <option value="enligne">Online</option>
+                                        <option value="presentielle">Face-to-face</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td>description</td>
+                                <td>Description</td>
                                 <td><textarea name="description" class="login" rows="4" cols="40">
 
 </textarea></td>

@@ -4,7 +4,7 @@ include_once "../../Model/Class/formateur.class.php";
 include_once "../../Model/Class/Admin.class.php";
 include_once "../../Model/Class/Formation.class.php";
 include_once "../../Model\Class\user.class.php";
-include_once "../../Model\Class\participation.class.php";
+include_once "../../Model\Class\\former.class.php";
 ?>
 
 <head>
@@ -23,7 +23,7 @@ include_once "../../Model\Class\participation.class.php";
 </head>
 
 <body>
-	<?php if (isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"])) {
+	<?php if (isset($_SESSION["password"]) && isset($_SESSION["email"])) {
 
 	?>
 		<div class="super_container">
@@ -49,7 +49,7 @@ include_once "../../Model\Class\participation.class.php";
 											} else {
 												echo "
                                     <li><a href='Login.php'>Login</a></li>
-                                    <li><a href='Inscription.php'>Registration</a></li>";
+                                    <li><a href='Inscription.php'>Inscription</a></li>";
 											}
 											if (isset($_SESSION["password"]) && isset($_SESSION["email"]) || (isset($_SESSION["passwordUser"]) && isset($_SESSION["emailUser"]))) {
 												echo "<li><a href='Profile.php'>Profile</a></li>";
@@ -203,8 +203,8 @@ include_once "../../Model\Class\participation.class.php";
 
 									<!-- Product -->
 									<?php
-									$part = new Participation();
-									$list=$part->RechParticipationUser($_GET["id"]);
+									$part = new Former();
+									$list=$part->RechFormerUser($_GET["id"]);
 									foreach ($list as $row) {
 										$f = new Formation();
 										$form=$f->RechFormation($row[2])->fetch();

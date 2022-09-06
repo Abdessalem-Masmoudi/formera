@@ -11,11 +11,14 @@ include_once "..\Model\Class\user.class.php";
         session_start();
             $_SESSION["emailAdmin"]=$mail;
             $_SESSION["passwordAdmin"]=$pass;
-            header("location:../index2.php");
+            header("location:../index.php");
     }elseif($c->loginFormateur($mail,$pass)->fetchColumn(0)!=0){
             session_start();
+            $form=$c->RechFormateurEmail($mail)->fetch();
+            print_r($form["id"]);
             $_SESSION["email"]=$mail;
             $_SESSION["password"]=$pass;
+            $_SESSION["id"]=$form["id"];
             header("location:../index.php");
         
     }else{

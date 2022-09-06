@@ -38,7 +38,7 @@ $res = $pdo->query($req) or print_r($pdo->errorInfo());
 $result="";
 foreach ($res as $row) {
     $result= $result.'<div class="product">
-<div class="product_image"><img src="images\formation\\' . $row[5] . '" alt="" ></div>
+<div class="product_image"><img src="images\formation\\' . $row[5] . '" alt=""  width="300px" height="200px"></div>
 <div class="product_content">
 <div class="product_title"><a href="formationDetails.php?id=' . $row[0] . '">' . $row[1] . '</a></div>
 <div class="product_price">' . $row[2] . '$</div>

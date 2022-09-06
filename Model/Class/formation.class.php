@@ -23,11 +23,19 @@
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res;
         }
+        public function RechFormationParams($c){
+            require_once('C:\wamp64\www\formera\Model\Config\config.php');
+            $cnx=new connexion();
+            $pdo=$cnx->CNX();
+            $req="SELECT * FROM Formation where Desigation='$c->Desigation' and Prix=$c->Prix and Caracteristique='$c->Caracteristique' and Image='$c->Image' and description='$c->description'";
+            $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
+            return $res;
+        }
         public function SuppFormation($id){
             require_once('C:\wamp64\www\formera\Model\Config\config.php');
             $cnx=new connexion();
             $pdo=$cnx->CNX();
-            $req="DELETE FROM Formation where id='$id'";
+            $req="DELETE FROM Formation where id=$id";
             $res=$pdo->query($req) or print_r($pdo->errorInfo()); 	
             return $res;
         }

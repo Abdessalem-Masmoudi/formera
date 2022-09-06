@@ -22,12 +22,7 @@
 
     );
     $e->Image =  $image_file["name"];
-    $e->insertion($e);
-    print_r($e->RechFormationParams($e));
-    $id=$e->RechFormationParams($e)->fetch()[0];
-    $f=new Former();
-    $f->idFormateur=$_SESSION["id"];
-    $f->idFormation=$id;
-    $f->insertion($f);
-   header("location:../views/user/formation.php");
+    $e->id=$_GET["idFormation"];
+    $e->modifFormation($e);
+   header("location:../views/user/formationDetails.php?id=".$_GET["idFormation"]);
 ?>
